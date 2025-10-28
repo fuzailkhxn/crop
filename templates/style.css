@@ -1,8 +1,10 @@
 body {
-  background: linear-gradient(135deg, #e0e9f1 0%, #b4e9db 100%);
-  font-family: 'Montserrat', Arial, sans-serif;
-  min-height: 100vh;
+  background:
+    radial-gradient(ellipse at 60% 70%, #b4e9db 0%, transparent 60%),
+    radial-gradient(ellipse at 30% 30%, #c2ebb9 0%, transparent 55%),
+    linear-gradient(135deg, #e0e9f1 0%, #b4e9db 100%) !important;
 }
+
 .main-card {
   max-width: 600px;
   margin: 3.5rem auto;
@@ -12,16 +14,19 @@ body {
   padding: 2.5rem 2.3rem 2.3rem 2.3rem;
   backdrop-filter: blur(9px);
 }
+
 .header-flex {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
 }
+
 .plant-icon {
   font-size: 2.2rem;
   line-height: 1;
 }
+
 h1 {
   font-family: 'Montserrat', Arial, sans-serif;
   font-weight: 700;
@@ -38,6 +43,7 @@ h1 {
   margin-bottom: 6px;
   letter-spacing: .2px;
 }
+
 .form-control {
   background: rgba(246,255,250,0.93);
   border-radius: 1.12rem;
@@ -47,17 +53,20 @@ h1 {
   margin-bottom: 17px;
   transition: border-color 0.22s, box-shadow 0.22s;
 }
+
 .form-control:focus {
   border-color: #31be7c;
   box-shadow: 0 0 0 2px #b7f6ed8b;
   background: #fff;
 }
+
 .form-text {
   font-size: 0.94rem;
   color: #78b5ab;
   margin-top: -13px;
   margin-bottom: 10px;
 }
+
 .submit-btn {
   width: 100%;
   background: linear-gradient(90deg, #2fa95d 0%, #22c1c3 100%);
@@ -72,10 +81,12 @@ h1 {
   box-shadow: 0 2px 8px 0 rgba(76, 197, 153, 0.09);
   transition: background .22s, transform .15s;
 }
+
 .submit-btn:hover, .submit-btn:focus {
   background: linear-gradient(90deg, #22c1c3 0%, #2fa95d 100%);
   transform: translateY(-2px) scale(1.025);
 }
+
 @media (max-width: 650px) {
   .main-card {
     max-width: 99vw;

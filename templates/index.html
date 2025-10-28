@@ -16,11 +16,7 @@
 
   <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-        <a class="navbar-brand" href="/">Crop Recommendation System Using Machine Learning</a>
-      </div>
-    </nav>
+
 
     <!-- Main -->
     <main class="hero">
@@ -90,18 +86,26 @@
 
                 <!-- Prediction result -->
                 {% if result %}
-                <div class="card mt-4 border-success-subtle shadow-sm">
-                  <div class="card-body">
-                    <div class="d-flex align-items-center gap-3">
-                      <img src="{{ url_for('static', filename='crop.png') }}" alt="Crop" width="56" height="56" class="rounded">
-                      <div>
-                        <h5 class="card-title mb-1">Recommended crop</h5>
-                        <p class="card-text mb-0">{{ result }}</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {% endif %}
+  {% if 'Input error:' in result %}
+    <div class="alert alert-danger mt-4" role="alert">
+      {{ result }}
+    </div>
+  {% else %}
+    <div class="card mt-4 border-success-subtle shadow-sm">
+      <div class="card-body">
+        <div class="d-flex align-items-center gap-3">
+          <img src="{{ url_for('static', filename=crop_image) }}" alt="Crop" width="56" height="56" class="rounded">
+          <div>
+            <h5 class="card-title mb-1">Recommended crop</h5>
+            <p class="card-text mb-0">{{ result }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+
+
               </div>
             </div>
           </div>
