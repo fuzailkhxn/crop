@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crop Recommendation System</title>
+  <!-- Add Bootstrap CSS FIRST (this loads Bootstrap from the internet) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Then your custom CSS -->
+  <link rel="stylesheet" href="style.css">
+  <!-- (Optional) Google Fonts or any other required links -->
+</head>
+
+
+
+  <body>
+    <!-- Navbar -->
+
+
+    <!-- Main -->
+    <main class="hero">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-12 col-lg-10 col-xxl-8">
+            <div class="elevated">
+              <div class="p-4 p-md-5">
+                <h1 class="brand-title text-success text-center mb-4">
+                  Crop Recommendation System <span class="text-success">🌱</span>
+                </h1>
+
+                <!-- Form -->
+                <form action="/predict" method="POST" novalidate>
+                  <!-- Row 1 -->
+                  <div class="row g-3">
+                    <div class="col-md-4">
+                      <label for="Nitrogen" class="form-label"><b>Nitrogen</b></label>
+                      <input type="number" id="Nitrogen" name="Nitrogen" class="form-control" placeholder="Enter Nitrogen" required step="1" min="0">
+                      <div class="form-text">Enter a value between <b>0 and 140 mg/kg</b>.</div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="Phosporus" class="form-label"><b>Phosphorus</b></label>
+                      <input type="number" id="Phosporus" name="Phosporus" class="form-control" placeholder="Enter Phosphorus" required step="1" min="0">
+                      <div class="form-text">Enter a value between <b>0 and 60 mg/kg</b>.</div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="Potassium" class="form-label"><b>Potassium</b></label>
+                      <input type="number" id="Potassium" name="Potassium" class="form-control" placeholder="Enter Potassium" required step="1" min="0">
+                      <div class="form-text">Enter a value between <b>0 and 300 mg/kg</b>.</div>
+                    </div>
+                  </div>
+
+                  <!-- Row 2 -->
+                  <div class="row g-3 mt-1">
+                    <div class="col-md-4">
+                      <label for="Temperature" class="form-label"><b>Temperature (°C)</b></label>
+                      <input type="number" id="Temperature" name="Temperature" class="form-control" placeholder="Enter Temperature in °C" required step="0.01">
+                      <div class="form-text">Enter a value between <b>10°C and 45°C</b>.</div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="Humidity" class="form-label"><b>Humidity (%)</b></label>
+                      <input type="number" id="Humidity" name="Humidity" class="form-control" placeholder="Enter Humidity in %" required step="0.01" min="0" max="100">
+                      <div class="form-text">Enter a value between <b>20% and 90%</b>.</div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="pH" class="form-label"><b>pH</b></label>
+                      <input type="number" id="pH" name="pH" class="form-control" placeholder="Enter pH value" required step="0.01" min="0" max="14">
+                      <div class="form-text">Enter a value between <b>4.5 and 9.0</b>.</div>
+                    </div>
+                  </div>
+
+                  <!-- Row 3 -->
+                  <div class="row g-3 mt-1">
+                    <div class="col-md-4">
+                      <label for="Rainfall" class="form-label"><b>Rainfall (mm)</b></label>
+                      <input type="number" id="Rainfall" name="Rainfall" class="form-control" placeholder="Enter Rainfall in mm" required step="0.01" min="0">
+                      <div class="form-text">Enter a value between <b>0 mm and 400 mm</b>.</div>
+                    </div>
+                  </div>
+
+                  <!-- Submit -->
+                  <div class="mt-4">
+                    <button type="submit" class="btn btn-success btn-lg w-100">Get Recommendation</button>
+                  </div>
+                </form>
+
+                <!-- Prediction result -->
+                {% if result %}
+  {% if 'Input error:' in result %}
+    <div class="alert alert-danger mt-4" role="alert">
+      {{ result }}
+    </div>
+  {% else %}
+    <div class="card mt-4 border-success-subtle shadow-sm">
+      <div class="card-body">
+        <div class="d-flex align-items-center gap-3">
+          <img src="{{ url_for('static', filename=crop_image) }}" alt="Crop" width="56" height="56" class="rounded">
+          <div>
+            <h5 class="card-title mb-1">Recommended crop</h5>
+            <p class="card-text mb-0">{{ result }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Keep your existing Bootstrap 5.3 bundle JS include here -->
+  </body>
+</html>
